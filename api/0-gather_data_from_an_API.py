@@ -1,10 +1,8 @@
-
 #!/usr/bin/python3
 """Gather employee TODO list progress from a REST API."""
 
-import sys
-
 import requests
+import sys
 
 
 if __name__ == "__main__":
@@ -44,4 +42,3 @@ if __name__ == "__main__":
 
     for task in completed_tasks:
         print("\t {}".format(task.get("title")))
-
