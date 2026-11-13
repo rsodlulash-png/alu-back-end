@@ -33,13 +33,6 @@ if __name__ == "__main__":
             quoting=csv.QUOTE_ALL
         )
 
-        writer.writerow([
-            "USER_ID",
-            "USERNAME",
-            "TASK_COMPLETED_STATUS",
-            "TASK_TITLE"
-        ])
-
         for task in todos:
             writer.writerow([
                 employee_id,
