@@ -1,8 +1,10 @@
+
 #!/usr/bin/python3
 """Gather employee TODO list progress from a REST API."""
 
-import requests
 import sys
+
+import requests
 
 
 if __name__ == "__main__":
@@ -13,26 +15,33 @@ if __name__ == "__main__":
     user_response = requests.get(
         "{}/users/{}".format(url, employee_id)
     )
+
     todos_response = requests.get(
         "{}/todos".format(url),
         params={"userId": employee_id}
     )
 
-    employee = user_response.json()
+    user = user_response.json()
     todos = todos_response.json()
 
-    employee_name = employee.get("name")
+    employee_name = user.get("name")
+
     completed_tasks = [
-        task for task in todos if task.get("completed") is True
+        task for task in todos
+        if task.get("completed") is True
     ]
+
+    total_tasks = len(todos)
+    number_completed = len(completed_tasks)
 
     print(
         "Employee {} is done with tasks({}/{}):".format(
             employee_name,
-            len(completed_tasks),
-            len(todos)
+            number_completed,
+            total_tasks
         )
     )
 
     for task in completed_tasks:
         print("\t {}".format(task.get("title")))
+
